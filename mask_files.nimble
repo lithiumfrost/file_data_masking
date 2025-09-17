@@ -11,13 +11,13 @@ srcDir = "src"
 
 # Build
 task release, "Build project":
-  let opts = [
-    "--opt:speed",
-    "-d:lto",
-    "--passC:-march=native",
-    "--mm:arc",
-    "--threads:on",
-    "-d:ThreadPoolSize=8",
-    "-d:FixedChanSize=16"
-  ].join(" ")
-  exec "nim c -d:release " & opts & " --out:bin/masked_files src/mask_files.nim"
+    --opt:speed
+    --define:lto
+    --define:release
+    --passC:"-march=native"
+    --mm:arc
+    --threads:on
+    --define:"ThreadPoolSize=8"
+    --define:"FixedChanSize=16"
+    --out:bin/masked_files 
+    setCommand "c", "src/mask_files.nim"
